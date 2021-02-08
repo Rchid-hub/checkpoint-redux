@@ -3,15 +3,31 @@ import { useSelector } from "react-redux";
 import TodoCard from "../toDoCard/toDoCard";
 import './toDoList.css'
 
-const TodoList = () => {
+const TodoList = ({done,unDone}) => {
   const todoList = useSelector((state) => state.todoList);
   return (
     <div>
-      {todoList.map((todo) => (
-        <ul className="todo-list">
-          <TodoCard todo={todo} />
-        </ul>
-      ))}
+     {done === unDone
+        ? todoList.map((todo) => (
+            <ul className="todo-list">
+              <TodoCard todo={todo} />
+            </ul>
+          ))
+        : done
+        ? todoList
+            .filter((todo) => todo.isDone)
+            .map((todo) => (
+              <ul className="todo-list">
+                <TodoCard todo={todo} />
+              </ul>
+            ))
+        : todoList
+            .filter((todo) => todo.isDone === false)
+            .map((todo) => (
+              <ul className="todo-list">
+                <TodoCard todo={todo} />
+              </ul>
+            ))}
     </div>
   );
 };
