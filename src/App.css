@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.checks{
+  display: flex;
+  position: relative;
+  left:48%;
+  top:20px;
+}
+
+.checks label{
+  margin-right: 40px;
+}
